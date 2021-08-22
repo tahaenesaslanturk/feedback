@@ -1,0 +1,24 @@
+{% extends 'reviews/base.html' %}
+
+{% block title %}Review Detail Page{% endblock title %}
+
+
+{% block content %}
+
+<h1>{{review.user_name}}</h1>
+<p>Rating: {{review.rating}}</p>
+<p>{{review.review}}</p>
+
+{% if is_favorite %}
+<p>This is fav</p>
+{% else %}
+<form action ="/reviews/favorite" method = "POST" > 
+{% csrf_token %}
+<input type="hidden" name="review_id" value="{{ review.id}}">
+<button>Favorite</button>
+
+{% endif %}
+
+</form>
+
+{% endblock content %}
